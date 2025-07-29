@@ -2,7 +2,7 @@
  *                                                                                      *
  * EREN TURKOGLU   - Wed, Jul, 2025                                                       *
  * Title           - relix                                                              *
- * Description     - client                                                             *
+ * Description     - The client code for making requests and receiving replies.                                                             *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
@@ -13,6 +13,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+
 
 void die(const char *msg) {
     perror(msg);
