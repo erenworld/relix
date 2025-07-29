@@ -1,0 +1,3 @@
+/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/exec.dir
+/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/edit_cache.dir
+/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/rebuild_cache.dir
