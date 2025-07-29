@@ -4,7 +4,8 @@ project(RedisImplementation)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
-    src/main.cpp
+    examples/client.cpp
+    examples/server.cpp
 )
 
 add_executable(exec ${SOURCES})

@@ -72,31 +72,47 @@ include CMakeFiles/exec.dir/flags.make
 CMakeFiles/exec.dir/codegen:
 .PHONY : CMakeFiles/exec.dir/codegen
 
-CMakeFiles/exec.dir/src/main.cpp.o: CMakeFiles/exec.dir/flags.make
-CMakeFiles/exec.dir/src/main.cpp.o: /Users/erenturkoglu/PROJECTS/tiny-redis/src/main.cpp
-CMakeFiles/exec.dir/src/main.cpp.o: CMakeFiles/exec.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exec.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exec.dir/src/main.cpp.o -MF CMakeFiles/exec.dir/src/main.cpp.o.d -o CMakeFiles/exec.dir/src/main.cpp.o -c /Users/erenturkoglu/PROJECTS/tiny-redis/src/main.cpp
+CMakeFiles/exec.dir/examples/client.cpp.o: CMakeFiles/exec.dir/flags.make
+CMakeFiles/exec.dir/examples/client.cpp.o: /Users/erenturkoglu/PROJECTS/tiny-redis/examples/client.cpp
+CMakeFiles/exec.dir/examples/client.cpp.o: CMakeFiles/exec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exec.dir/examples/client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exec.dir/examples/client.cpp.o -MF CMakeFiles/exec.dir/examples/client.cpp.o.d -o CMakeFiles/exec.dir/examples/client.cpp.o -c /Users/erenturkoglu/PROJECTS/tiny-redis/examples/client.cpp
 
-CMakeFiles/exec.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exec.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/erenturkoglu/PROJECTS/tiny-redis/src/main.cpp > CMakeFiles/exec.dir/src/main.cpp.i
+CMakeFiles/exec.dir/examples/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exec.dir/examples/client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/erenturkoglu/PROJECTS/tiny-redis/examples/client.cpp > CMakeFiles/exec.dir/examples/client.cpp.i
 
-CMakeFiles/exec.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exec.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/erenturkoglu/PROJECTS/tiny-redis/src/main.cpp -o CMakeFiles/exec.dir/src/main.cpp.s
+CMakeFiles/exec.dir/examples/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exec.dir/examples/client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/erenturkoglu/PROJECTS/tiny-redis/examples/client.cpp -o CMakeFiles/exec.dir/examples/client.cpp.s
+
+CMakeFiles/exec.dir/examples/server.cpp.o: CMakeFiles/exec.dir/flags.make
+CMakeFiles/exec.dir/examples/server.cpp.o: /Users/erenturkoglu/PROJECTS/tiny-redis/examples/server.cpp
+CMakeFiles/exec.dir/examples/server.cpp.o: CMakeFiles/exec.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exec.dir/examples/server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exec.dir/examples/server.cpp.o -MF CMakeFiles/exec.dir/examples/server.cpp.o.d -o CMakeFiles/exec.dir/examples/server.cpp.o -c /Users/erenturkoglu/PROJECTS/tiny-redis/examples/server.cpp
+
+CMakeFiles/exec.dir/examples/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/exec.dir/examples/server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/erenturkoglu/PROJECTS/tiny-redis/examples/server.cpp > CMakeFiles/exec.dir/examples/server.cpp.i
+
+CMakeFiles/exec.dir/examples/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/exec.dir/examples/server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/erenturkoglu/PROJECTS/tiny-redis/examples/server.cpp -o CMakeFiles/exec.dir/examples/server.cpp.s
 
 # Object files for target exec
 exec_OBJECTS = \
-"CMakeFiles/exec.dir/src/main.cpp.o"
+"CMakeFiles/exec.dir/examples/client.cpp.o" \
+"CMakeFiles/exec.dir/examples/server.cpp.o"
 
 # External object files for target exec
 exec_EXTERNAL_OBJECTS =
 
-exec: CMakeFiles/exec.dir/src/main.cpp.o
+exec: CMakeFiles/exec.dir/examples/client.cpp.o
+exec: CMakeFiles/exec.dir/examples/server.cpp.o
 exec: CMakeFiles/exec.dir/build.make
 exec: CMakeFiles/exec.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable exec"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable exec"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exec.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

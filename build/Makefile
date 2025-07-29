@@ -129,29 +129,53 @@ exec/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/build
 .PHONY : exec/fast
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+examples/client.o: examples/client.cpp.o
+.PHONY : examples/client.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+examples/client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/client.cpp.o
+.PHONY : examples/client.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+examples/client.i: examples/client.cpp.i
+.PHONY : examples/client.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+examples/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/client.cpp.i
+.PHONY : examples/client.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+examples/client.s: examples/client.cpp.s
+.PHONY : examples/client.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+examples/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/client.cpp.s
+.PHONY : examples/client.cpp.s
+
+examples/server.o: examples/server.cpp.o
+.PHONY : examples/server.o
+
+# target to build an object file
+examples/server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/server.cpp.o
+.PHONY : examples/server.cpp.o
+
+examples/server.i: examples/server.cpp.i
+.PHONY : examples/server.i
+
+# target to preprocess a source file
+examples/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/server.cpp.i
+.PHONY : examples/server.cpp.i
+
+examples/server.s: examples/server.cpp.s
+.PHONY : examples/server.s
+
+# target to generate assembly for a file
+examples/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exec.dir/build.make CMakeFiles/exec.dir/examples/server.cpp.s
+.PHONY : examples/server.cpp.s
 
 # Help Target
 help:
@@ -162,9 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exec"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... examples/client.o"
+	@echo "... examples/client.i"
+	@echo "... examples/client.s"
+	@echo "... examples/server.o"
+	@echo "... examples/server.i"
+	@echo "... examples/server.s"
 .PHONY : help
 
 

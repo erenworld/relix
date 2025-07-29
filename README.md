@@ -1,7 +1,5 @@
-# Redis re-implementation
-If you can build a Redis server, you can build almost any software beyond CRUD
+# Relix
 
-This repo contains a simple implementation of a Redis-like
-server. It is intended as a way to learn network programming and the
-implementation and application of basic data structures in C.
+Relix is an example of the server/client system. Multiple clients connect to a single server,
+and the server receives requests from TCP connections and sends responses back.
 
