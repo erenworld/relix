@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- * EREN TURKOGLU   - Wed, Jul, 2025                                                       *
+ * EREN TURKOGLU   - Wed, Jul, 2025                                                     *
  * Title           - relix                                                              *
  * Description     - client                                                             *
  *                                                                                      *
@@ -36,8 +36,8 @@ static int32_t read_full(int fd, char *buf, size_t n) {
             return -1;  // error, or unexpected EOF
         }
         assert((size_t)rv <= n);
-        n -= (size_t)rv;
-        buf += rv;
+        n -= (size_t)rv; // to read
+        buf += rv; // move pointer
     }
     return 0;
 }
@@ -95,6 +95,11 @@ static int32_t query(int fd, const char *text) {
     return 0;
 }
 
+// TODOS: The protocol parsing code requires at least 2 read() syscalls per request. 
+// The number of syscalls can be reduced by using “buffered IO”. That is: 
+// read as much as you can into a
+// buffer at once, then try to parse multiple requests from that buffer
+
 int main() {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd < 0) {
@@ -104,7 +109,7 @@ int main() {
     struct sockaddr_in addr = {};
     addr.sin_family = AF_INET;
     addr.sin_port = ntohs(1234);
-    addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK);  // 127.0.0.1
+    addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK);  // 127.0.0.1:1234
     int rv = connect(fd, (const struct sockaddr *)&addr, sizeof(addr));
     if (rv) {
         die("connect");
@@ -113,18 +118,19 @@ int main() {
     // multiple requests
     int32_t err = query(fd, "hello1");
     if (err) {
-        goto L_DONE;
+        close(fd);
+        return -1;
     }
     err = query(fd, "hello2");
     if (err) {
-        goto L_DONE;
+        close(fd);
+        return -1;
     }
     err = query(fd, "hello3");
     if (err) {
-        goto L_DONE;
+        close(fd);
+        return -1;
     }
-
-L_DONE:
     close(fd);
     return 0;
 }
