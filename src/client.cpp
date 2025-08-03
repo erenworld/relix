@@ -67,3 +67,46 @@ static void buffer_append(std::vector<uint8_t> &buf, const uint8_t *data, size_t
     buf.insert(buf.end(), data, data + len);
 }
 
+int main(void)
+{
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
+
+    if (fd < 0) {
+        die("socket()");
+    }
+    // initialize IPv4 address 0
+    struct sockaddr_in addr = {};
+    addr.sin_family = AF_INET;
+    addr.sin_port = ntohs(1234);
+    addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK); // 127.0.0.1
+    int rv = connect(fd, (const struct sockaddr *)&addr, sizeof(addr));
+    
+    if (rv) {
+        die("connect()");
+    }
+    // multiple pipeline req
+    std::vector<std::string> query_list = {
+        "hello1", "hello2", "hello3",
+        // a large message requires multiple event loop iterations
+        std::string(MAX_MSG, 'z'),
+        "hello5",
+    };
+    for (const std::string &s : query_list) {
+        int32_t err = send_req(fd, (uint8_t)s.data(), s.size());
+
+        if (err) {
+            goto L_DONE;
+        }
+    }
+    for (size_t i = 0; i < query_list.size(); ++i) {
+        int32_t err = read_res(fd);
+
+        if (err) {
+            goto L_DONE;
+        }
+    }
+
+    L_DONE:
+        close(fd);
+        return 0;
+}
