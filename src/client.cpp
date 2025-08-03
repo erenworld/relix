@@ -31,3 +31,16 @@ static void die(const char *msg)
     abort();
 }
 
+static int32_t read_all_bytes(int fd, uint8_t *buffer, size_t total_bytes)
+{
+    while (total_bytes > 0) {
+        ssize_t byte = read(fd, buf, total_bytes);
+        if (byte <= 0) {
+            return -1; // error or unexpected EOF
+        }
+        assert((size_t)byte <= total_bytes);
+        total_bytes -= (size_t)byte;
+        buffer += byte;
+    }
+    return 0;
+}
