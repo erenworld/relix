@@ -140,14 +140,14 @@ int main(void)
         "hello5",
     };
     for (const std::string &s : query_list) {
-        int32_t err = send_req(fd, (uint8_t)s.data(), s.size());
+        int32_t err = send_request(fd, (uint8_t *)s.data(), s.size()); // cast pointer itself
 
         if (err) {
             goto L_DONE;
         }
     }
     for (size_t i = 0; i < query_list.size(); ++i) {
-        int32_t err = read_res(fd);
+        int32_t err = read_response(fd);
 
         if (err) {
             goto L_DONE;
