@@ -19,6 +19,8 @@
 #include <string>
 #include <vector>
 
+const size_t MAX_MSG = 32 << 20; // 32 * 2^20
+
 static void msg(const char *msg)
 {
     fprintf(stderr, "%s\n", msg);
@@ -58,3 +60,10 @@ static int32_t write_all_bytes(int fd, const uint8_t *buffer, size_t total_bytes
     }
     return 0;
 }
+
+// append to the back
+static void buffer_append(std::vector<uint8_t> &buf, const uint8_t *data, size_t len)
+{
+    buf.insert(buf.end(), data, data + len);
+}
+
