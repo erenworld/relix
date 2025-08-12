@@ -6,37 +6,54 @@
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
+// stdlib
 #include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <fcntl.h>
-#include <poll.h>
 #include <stdio.h>
 #include <errno.h>
+// system
+#include <fcntl.h>
+#include <poll.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/ip.h>
-#include <iostream>
+// C++
+#include <vector>
 
-const size_t k_max_msg = 4096;
+static void msg(const char *msg)
+{
+    fprintf(stderr, "%s\n", errno, msg);
+}
 
-enum {
-    STATE_REQ = 0,
-    STATE_RES = 1,
-    STATE_END = 2, // Mark the connection for deletion.
-};
+static void errno_msg(const char *msg)
+{
+    fprintf(stderr, "[errno:%d] %s\n", errno, msg);
+}
 
-struct Connection {
-    int fd = -1;
-    uint32_t state = 0; // either STATE_REQ or STATE_RES
-    // buffer for reading
-    size_t r_bufsize = 0;
-    uint8_t r_buf[4 + k_max_msg];
-    // buffer for writing
-    size_t w_bufsize = 0;
-    size_t w_bufsent = 0;
-    uint8_t w_buf[4 + k_max_msg];
-};
+static void die(const char *msg)
+{
+    fprintf(stderr, "[%d] %s\n", errno, msg);
+    abort();
+}
+
+static void set_fd_nonblocking(int fd)
+{
+    errno = 0;
+    int flags = fcntl(fd, F_GETFL, 0);
+    
+    if (errno) {
+        die("fcntl error");
+        return;
+    }
+    flags |= O_NONBLOCK;
+
+    errno = 0;
+    (void)fcntl(fd, F_SETFL, flags);
+    if (errno) {
+        die("fcntl error");
+    }
+}
 

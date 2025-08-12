@@ -1,3 +1,4 @@
-/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/exec.dir
+/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/server.dir
+/Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/client.dir
 /Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/edit_cache.dir
 /Users/erenturkoglu/PROJECTS/tiny-redis/build/CMakeFiles/rebuild_cache.dir

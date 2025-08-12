@@ -67,51 +67,52 @@ static void buffer_append(std::vector<uint8_t> &buf, const uint8_t *data, size_t
     buf.insert(buf.end(), data, data + len);
 }
 
+// Envoyer une requête à un descripteur de fichier (ex: un socket), 
+// en encodant le message avec un en-tête contenant sa longueur
 static int32_t send_request(int fd, const uint8_t *text, size_t len)
 {
     if (len > MAX_MSG) {
         return -1;
     }
     std::vector<uint8_t> wbuf;
-    buffer_append(wbuf, (const uint8_t *)&len, 4);
-    buffer_append(wbuf, text, len);
+
+    buffer_append(wbuf, (const uint8_t *)&len, 4); // len, et tu la considères comme une séquence d’octets.
+    buffer_append(wbuf, text, len); // Tu prends len octets depuis l'adresse text, Et tu les ajoutes à la suite du vecteur wbuf.
 
     return write_all_bytes(fd, wbuf.data(), wbuf.size());
 }
 
 static int32_t read_response(int fd)
 {
-    // 4 bytes header
     std::vector<uint8_t> rbuf;
     rbuf.resize(4);
+
     errno = 0;
     int32_t err = read_all_bytes(fd, &rbuf[0], 4);
 
     if (err) {
         if (errno == 0) {
-            msg("EOF");    
+            msg("EOF");
         } else {
             msg("read() error");
         }
         return err;
     }
-
     uint32_t len = 0;
-    memcpy(&len, rbuf.data(), 4); // assume little endian
+    memcpy(&len, rbuf.data(), 4);
+
     if (len > MAX_MSG) {
-        msg("too long");
+        msg("too long response");
         return -1;
     }
-    // reply body
     rbuf.resize(4 + len);
     err = read_all_bytes(fd, &rbuf[4], len);
     if (err) {
         msg("read() error");
         return err;
     }
-
-    // do something
     printf("len:%u data:%.*s\n", len, len < 100 ? len : 100, &rbuf[4]);
+    
     return 0;
 }
 
@@ -125,8 +126,8 @@ int main(void)
     // initialize IPv4 address 0
     struct sockaddr_in addr = {};
     addr.sin_family = AF_INET;
-    addr.sin_port = ntohs(1234);
-    addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK); // 127.0.0.1
+    addr.sin_port = htons(1234);
+    addr.sin_addr.s_addr = INADDR_LOOPBACK; // 127.0.0.1
     int rv = connect(fd, (const struct sockaddr *)&addr, sizeof(addr));
     
     if (rv) {
